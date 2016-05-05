@@ -20,7 +20,7 @@ Add the PayfastServiceProvider to your providers array in config/app.php
 'providers' => [
     //
         
-    'garethnic\payfast\payfastServiceProvider::class'
+    garethnic\payfast\payfastServiceProvider::class
 ];
 ```
 In your `.env` add the following keys:
