@@ -1,4 +1,4 @@
-# Laravel5 Payfast
+# Laravel 5 Payfast
 
 A dead simple Laravel 5.2 payment processing class for payments through payfast.co.za. This package only supports ITN transactions. Laravel5 Payfast is strictly use at own risk.
 
