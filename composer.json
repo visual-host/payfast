@@ -1,13 +1,13 @@
 {
   "name": "garethnic/payfast",
   "author": "Gareth Nicholson",
-  "description": "Laravel 5.2 package for processing ITN payments through payfast.co.za",
+  "description": "Laravel 5 package for processing ITN payments through payfast.co.za",
   "keywords": ["package", "laravel", "payfast"],
   "license": "MIT",
   "require": {
-    "illuminate/support": "^5.2",
+    "illuminate/support": "^5.1",
     "sebastian/money": "1.6.*",
-    "illuminate/http": "^5.2",
+    "illuminate/http": "^5.1",
     "symfony/var-dumper": "^3.0"
   },
   "require-dev": {
