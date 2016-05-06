@@ -5,10 +5,10 @@
   "keywords": ["package", "laravel", "payfast"],
   "license": "MIT",
   "require": {
-    "illuminate/support": "^5.1",
+    "illuminate/support": "^5.2",
     "sebastian/money": "1.6.*",
-    "illuminate/http": "^5.1",
-    "symfony/var-dumper": "2.7"
+    "illuminate/http": "^5.2",
+    "symfony/var-dumper": "^3.0"
   },
   "require-dev": {
     "phpunit/phpunit" : "4.*",
