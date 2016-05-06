@@ -11,7 +11,7 @@ Forked from [billowapp/payfast](https://github.com/billowapp/payfast)
 Add Laravel 5 Payfast to your composer.json
 
 
-    composer require garethnic/payfast
+    "garethnic/payfast": "0.1.13@dev"
 
 
 Add the PayfastServiceProvider to your providers array in config/app.php
