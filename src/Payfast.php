@@ -6,6 +6,7 @@ use Exception;
 
 use Money\Money;
 use Money\Currency;
+use Money\IntlMoneyFormatter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use garethnic\payfast\Contracts\PaymentProcessor;
@@ -221,7 +222,7 @@ class Payfast implements PaymentProcessor
         Log::info('Validating host');
         $this->validateHost($request);
         Log::info('Validating amount');
-        $this->validateAmount($request->get('amount_gross'));
+        $this->validateAmount((int)$request->get('amount_gross'));
         Log::info('Validating payfast data');
         $this->validatePayfastData($request);
 
@@ -278,9 +279,16 @@ class Payfast implements PaymentProcessor
         $hosts = $this->getHosts();
 
         //REMOTE_ADDR returns ::1 ipv6 localhost
-        if (!in_array($request->server('HTTP_X_FORWARDED_FOR'), $hosts)) {
-            throw new Exception('Not a valid Host');
+        if ($request->server('REMOTE_ADDR') !== '::1') {
+            if (!in_array($request->server('REMOTE_ADDR'), $hosts)) {
+                throw new Exception('Not a valid Host');
+            }
+        } else {
+            if (!in_array($request->server('HTTP_X_FORWARDED_FOR'), $hosts)) {
+                throw new Exception('Not a valid Host');
+            }
         }
+
 
         return true;
     }
@@ -319,7 +327,10 @@ class Payfast implements PaymentProcessor
      */
     public function validateAmount($grossAmount)
     {
-        if ($this->amount === $this->newMoney($grossAmount, true)->getConvertedAmount()) {
+        $amountToValidate = $this->newMoney($grossAmount);
+        $conversion = $amountToValidate->getAmount() * 100;
+        
+        if ($this->amount === $conversion) {
             return true;
         } else {
             throw new Exception('The gross amount does not match the order amount');
@@ -334,7 +345,7 @@ class Payfast implements PaymentProcessor
      */
     public function newMoney($amount)
     {
-        return new Money((int) $amount, new Currency('ZAR'));
+        return new Money($amount, new Currency('ZAR'));
     }
 
     /**
