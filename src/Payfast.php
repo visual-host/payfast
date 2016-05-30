@@ -2,12 +2,13 @@
 
 namespace garethnic\payfast;
 
-use garethnic\payfast\Contracts\PaymentProcessor;
-use Illuminate\Http\Request;
-use SebastianBergmann\Money\Currency;
-use SebastianBergmann\Money\Money;
-use Illuminate\Support\Facades\Log;
 use Exception;
+
+use Money\Money;
+use Money\Currency;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use garethnic\payfast\Contracts\PaymentProcessor;
 
 // Messages
 // Error
@@ -118,7 +119,7 @@ class Payfast implements PaymentProcessor
     {
         $money = $this->newMoney($amount);
 
-        $this->amount = $money->getConvertedAmount();
+        $this->amount = $money->getAmount();
     }
 
     /**
@@ -333,11 +334,7 @@ class Payfast implements PaymentProcessor
      */
     public function newMoney($amount)
     {
-        if (is_string($amount) || is_float($amount)) {
-            return Money::fromString((string)$amount, new Currency('ZAR'));
-        }
-
-        return new Money($amount, new Currency('ZAR'));
+        return new Money((int) $amount, new Currency('ZAR'));
     }
 
     /**
