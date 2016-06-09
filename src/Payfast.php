@@ -1,15 +1,15 @@
 <?php
 
-namespace garethnic\payfast;
+namespace IoDigital\Payfast;
 
 use Exception;
 
 use Money\Money;
 use Money\Currency;
-use Money\IntlMoneyFormatter;
 use Illuminate\Http\Request;
+use Money\IntlMoneyFormatter;
 use Illuminate\Support\Facades\Log;
-use garethnic\payfast\Contracts\PaymentProcessor;
+use IoDigital\Payfast\Contracts\PaymentProcessor;
 
 // Messages
 // Error

@@ -13,7 +13,7 @@ Forked from [billowapp/payfast](https://github.com/billowapp/payfast).
 Add Laravel 5 Payfast to your composer.json
 
 
-    composer require garethnic/payfast
+    composer require io-digital/payfast
 
 
 Add the PayfastServiceProvider to your providers array in config/app.php
@@ -22,7 +22,7 @@ Add the PayfastServiceProvider to your providers array in config/app.php
 'providers' => [
     //
 
-    garethnic\payfast\payfastServiceProvider::class
+    IoDigital\Payfast\PayfastServiceProvider::class,
 ];
 ```
 In your `.env` add the following keys:
@@ -44,8 +44,13 @@ publish default configuration file.
 
     php artisan vendor:publish
 
-IMPORTANT: You will need to edit App\Http\Middleware\VerifyCsrfToken by adding the route, which handles the ITN response to the $excepted array. Validation is done via the ITN response.
+IMPORTANT: You will need to edit App\Http\Middleware\VerifyCsrfToken by adding the route, which handles the ITN response to the $except array. Validation is done via the ITN response.
 
+```php
+protected $except = [
+        '/itn'
+    ];
+```
 
 
 ```php
@@ -83,7 +88,7 @@ Creating a payment returns an html form ready to POST to payfast. When the custo
 
 ```php
 
-use Billow\Contracts\PaymentProcessor;
+use IoDigital\Payfast\Contracts\PaymentProcessor;
 
 Class PaymentController extends Controller
 {
@@ -119,7 +124,7 @@ Payfast will send a POST request to notify the merchant (You) with a status on t
 
 ```php
 
-use Billow\Contracts\PaymentProcessor;
+use IoDigital\Payfast\Contracts\PaymentProcessor;
 
 Class PaymentController extends Controller
 {
@@ -191,21 +196,14 @@ Variables Returned by Payfast
 
 ### Amounts
 
-The cart total may be set in 2 ways, as a string value:
+In the case of an integer, the cart total must be passed through in cents, as follows:
 
 ```php
 
-    $cartTotal = '99.99';
-
-    $payfast->setAmount($cartTotal);
-```
-
-Or as an Integer. In the case of an integer, the cart total must be passed through in cents, as follows:
-
-```php
-
-$cartTotal = 9999; // Laravel5 Payfast will parse this value and format it accordingly. See sebastianbergmann/money
-$payfast->setAmount($cartTotal);
+$cartTotal = 9999;
+// "mathiasverraes/money": "^1.3" doesn't convert from cents correctly yet
+// That's why a manual division by 100 is necessary
+$payfast->setAmount($cartTotal / 100);
 
 ```
 
