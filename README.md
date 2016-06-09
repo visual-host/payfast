@@ -2,7 +2,9 @@
 
 A dead simple Laravel 5 payment processing class for payments through payfast.co.za. This package only supports ITN transactions.
 
-Forked from [billowapp/payfast](https://github.com/billowapp/payfast). This repo adds missing verification steps.
+Forked from [billowapp/payfast](https://github.com/billowapp/payfast).
+
+**This repo adds missing verification steps that are required.**
 
 **Still in development.**
 
@@ -98,7 +100,7 @@ Class PaymentController extends Controller
         // Build up payment Paramaters.
         $payfast->setBuyer('first name', 'last name', 'email');
 
-        //PS add division by 100 for cents as new dependency doesn't do conversion
+        //PS ADD DIVISION BY 100 FOR CENTS AS THE NEW DEPENDENCY "mathiasverraes/money": "^1.3" DOESN'T DO CONVERSION
         payfast->setAmount($purchase->amount / 100);
 
         $payfast->setItem('item-title', 'item-description');
