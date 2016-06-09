@@ -1,8 +1,8 @@
 # Laravel 5 Payfast
 
-A dead simple Laravel 5 payment processing class for payments through payfast.co.za. This package only supports ITN transactions. Laravel5 Payfast is strictly use at own risk.
+A dead simple Laravel 5 payment processing class for payments through payfast.co.za. This package only supports ITN transactions.
 
-Forked from [billowapp/payfast](https://github.com/billowapp/payfast)
+Forked from [billowapp/payfast](https://github.com/billowapp/payfast). This repo adds missing verification steps.
 
 **Still in development.**
 
@@ -88,7 +88,7 @@ Class PaymentController extends Controller
 
     public function confirmPayment(PaymentProcessor $payfast)
     {
-        // Eloqunet example.  
+        // Eloquent example.
         $cartTotal = 9999;
         $order = Order::create([
                 'm_payment_id' => '001', // A unique reference for the order.
@@ -97,7 +97,10 @@ Class PaymentController extends Controller
 
         // Build up payment Paramaters.
         $payfast->setBuyer('first name', 'last name', 'email');
-        $payfast->setAmount($order->amount);
+
+        //PS add division by 100 for cents as new dependency doesn't do conversion
+        payfast->setAmount($purchase->amount / 100);
+
         $payfast->setItem('item-title', 'item-description');
         $payfast->setMerchantReference($order->m_payment_id);
 
