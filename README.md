@@ -22,7 +22,7 @@ Add the PayfastServiceProvider to your providers array in config/app.php
 'providers' => [
     //
 
-    IoDigital\Payfast\PayfastServiceProvider::class
+    IoDigital\Payfast\PayfastServiceProvider::class,
 ];
 ```
 In your `.env` add the following keys:
@@ -44,8 +44,13 @@ publish default configuration file.
 
     php artisan vendor:publish
 
-IMPORTANT: You will need to edit App\Http\Middleware\VerifyCsrfToken by adding the route, which handles the ITN response to the $excepted array. Validation is done via the ITN response.
+IMPORTANT: You will need to edit App\Http\Middleware\VerifyCsrfToken by adding the route, which handles the ITN response to the $except array. Validation is done via the ITN response.
 
+```php
+protected $except = [
+        '/itn'
+    ];
+```
 
 
 ```php
@@ -83,7 +88,7 @@ Creating a payment returns an html form ready to POST to payfast. When the custo
 
 ```php
 
-use IoDigital\Contracts\PaymentProcessor;
+use IoDigital\Payfast\Contracts\PaymentProcessor;
 
 Class PaymentController extends Controller
 {
@@ -119,7 +124,7 @@ Payfast will send a POST request to notify the merchant (You) with a status on t
 
 ```php
 
-use IoDigital\Contracts\PaymentProcessor;
+use IoDigital\Payfast\Contracts\PaymentProcessor;
 
 Class PaymentController extends Controller
 {
