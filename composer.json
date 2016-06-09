@@ -1,5 +1,5 @@
 {
-  "name": "garethnic/payfast",
+  "name": "io-digital/payfast",
   "author": "Gareth Nicholson",
   "description": "Laravel 5 package for processing ITN payments through payfast.co.za",
   "keywords": ["package", "laravel", "payfast"],
@@ -16,12 +16,12 @@
   },
   "autoload": {
     "psr-4": {
-      "garethnic\\payfast\\": "src/"
+      "IoDigital\\Payfast\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "garethnic\\payfast\\": "tests"
+      "IoDigital\\Payfast\\": "tests"
     }
   },
   "scripts": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace garethnic\payfast;
+namespace IoDigital\Payfast;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -9,7 +9,7 @@ class PayfastServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('garethnic\payfast\Contracts\PaymentProcessor', 'garethnic\payfast\Payfast');
+        $this->app->bind('IoDigital\Payfast\Contracts\PaymentProcessor', 'IoDigital\Payfast\Payfast');
     }
 
     public function boot()
@@ -22,6 +22,4 @@ class PayfastServiceProvider extends ServiceProvider
             __DIR__ . '/config/payfast.php', 'payfast'
         );
     }
-
-
 }

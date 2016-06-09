@@ -1,6 +1,6 @@
 <?php
 
-namespace garethnic\payfast\Contracts;
+namespace IoDigital\Payfast\Contracts;
 
 
 interface PaymentProcessor
