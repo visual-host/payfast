@@ -135,7 +135,7 @@ Class PaymentController extends Controller
         $order = Order::where('m_payment_id', $request->get('m_payment_id'))->firstOrFail(); // Eloquent Example
 
         // Verify the payment status.
-        $status = $payfast->verify($request, $order->amount, /*$order->m_payment_id*/)->status();
+        $status = (int) $payfast->verify($request, $order->amount, /*$order->m_payment_id*/)->status();
 
         // Handle the result of the transaction.
         switch( $status )
