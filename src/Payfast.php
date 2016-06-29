@@ -277,11 +277,17 @@ class Payfast implements PaymentProcessor
     public function validateHost($request)
     {
         $hosts = $this->getHosts();
+        
+        if (!strcmp($request->server('REMOTE_ADDR'), '::1') == 0) {
+            if (!in_array($request->server('REMOTE_ADDR'), $hosts)) {
+                throw new Exception('Not a valid Host');
+            }
+        } elseif (!strcmp($request->server('HTTP_X_FORWARDED_FOR'), '::1') == 0) {
+            if (!in_array($request->server('HTTP_X_FORWARDED_FOR'), $hosts)) {
+                throw new Exception('Not a valid Host');
+            }
+        }
 
-        //REMOTE_ADDR returns ::1 ipv6 localhost
-        /*if (!in_array($request->server('HTTP_X_FORWARDED_FOR'), $hosts)) {
-            throw new Exception('Not a valid Host');
-        }*/
         return true;
     }
 
