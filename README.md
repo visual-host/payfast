@@ -134,6 +134,14 @@ Class PaymentController extends Controller
         // Retrieve the Order from persistance. Eloquent Example.
         $order = Order::where('m_payment_id', $request->get('m_payment_id'))->firstOrFail(); // Eloquent Example
 
+        try {
+            $verification = $payfast->verify($request, $order->amount);
+            $status = $payfast->status();
+        } catch (\Exception $e) {
+            Log::error('PAYFAST ERROR: ' . $e->getMessage());
+            $status = false;
+        }
+
         // Verify the payment status.
         $status = (int) $payfast->verify($request, $order->amount, /*$order->m_payment_id*/)->status();
 
