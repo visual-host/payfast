@@ -1,7 +1,7 @@
 {
   "name": "io-digital/payfast",
   "author": "Gareth Nicholson",
-  "description": "Laravel 5 package for processing ITN payments through payfast.co.za",
+  "description": "Process online payments in Laravel with Payfast",
   "keywords": ["package", "laravel", "payfast"],
   "license": "MIT",
   "require": {
