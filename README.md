@@ -2,7 +2,7 @@
 
 A dead simple Laravel 6 payment processing class for payments through payfast.co.za. This package only supports ITN transactions.
 
-Forked from [billowapp/payfast](https://github.com/billowapp/payfast).
+Forked from [io-digital/payfast](https://github.com/io-digital/payfast).
 
 **This repo adds missing verification steps that are required.**
 
