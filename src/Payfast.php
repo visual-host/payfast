@@ -1,15 +1,14 @@
 <?php
 
-namespace IoDigital\Payfast;
+namespace VisualHost\Payfast;
 
 use Exception;
 
 use Money\Money;
 use Money\Currency;
 use Illuminate\Http\Request;
-use Money\IntlMoneyFormatter;
 use Illuminate\Support\Facades\Log;
-use IoDigital\Payfast\Contracts\PaymentProcessor;
+use VisualHost\Payfast\Contracts\PaymentProcessor;
 
 // Messages
 // Error

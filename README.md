@@ -1,6 +1,6 @@
-# Laravel 5 Payfast
+# Laravel 6 Payfast
 
-A dead simple Laravel 5 payment processing class for payments through payfast.co.za. This package only supports ITN transactions.
+A dead simple Laravel 6 payment processing class for payments through payfast.co.za. This package only supports ITN transactions.
 
 Forked from [billowapp/payfast](https://github.com/billowapp/payfast).
 
@@ -10,10 +10,10 @@ Forked from [billowapp/payfast](https://github.com/billowapp/payfast).
 
 ## Installation
 
-Add Laravel 5 Payfast to your composer.json
+Add Laravel 6 Payfast to your composer.json
 
 
-    composer require io-digital/payfast
+    composer require visual-host/payfast
 
 
 Add the PayfastServiceProvider to your providers array in config/app.php
@@ -22,7 +22,7 @@ Add the PayfastServiceProvider to your providers array in config/app.php
 'providers' => [
     //
 
-    IoDigital\Payfast\PayfastServiceProvider::class,
+    VisualHost\Payfast\PayfastServiceProvider::class,
 ];
 ```
 In your `.env` add the following keys:
@@ -88,7 +88,7 @@ Creating a payment returns an html form ready to POST to payfast. When the custo
 
 ```php
 
-use IoDigital\Payfast\Contracts\PaymentProcessor;
+use VisualHost\Payfast\Contracts\PaymentProcessor;
 
 Class PaymentController extends Controller
 {
@@ -124,7 +124,7 @@ Payfast will send a POST request to notify the merchant (You) with a status on t
 
 ```php
 
-use IoDigital\Payfast\Contracts\PaymentProcessor;
+use VisualHost\Payfast\Contracts\PaymentProcessor;
 
 Class PaymentController extends Controller
 {

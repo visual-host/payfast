@@ -1,6 +1,6 @@
 <?php
 
-namespace IoDigital\Payfast;
+namespace VisualHost\Payfast;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -9,7 +9,7 @@ class PayfastServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('IoDigital\Payfast\Contracts\PaymentProcessor', 'IoDigital\Payfast\Payfast');
+        $this->app->bind('VisualHost\Payfast\Contracts\PaymentProcessor', 'VisualHost\Payfast\Payfast');
     }
 
     public function boot()

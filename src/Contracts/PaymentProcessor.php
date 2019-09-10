@@ -1,6 +1,6 @@
 <?php
 
-namespace IoDigital\Payfast\Contracts;
+namespace VisualHost\Payfast\Contracts;
 
 
 interface PaymentProcessor
